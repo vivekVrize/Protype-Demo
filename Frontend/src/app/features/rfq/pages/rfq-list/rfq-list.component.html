@@ -1,0 +1,37 @@
+<div class="space-y-4">
+  <div class="flex items-center justify-between">
+    <div>
+      <p class="text-sm text-slate-500">Requests For Quotation</p>
+      <h1 class="text-2xl font-semibold text-slate-900">RFQs</h1>
+    </div>
+    <button mat-flat-button color="primary">
+      <mat-icon>add</mat-icon>
+      New RFQ
+    </button>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <mat-card *ngFor="let rfq of rfqs()" class="rfq-card">
+      <mat-card-content class="space-y-3">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p class="text-xs text-slate-500">{{ rfq.rfqNumber }}</p>
+            <h3 class="text-lg font-semibold text-slate-900">{{ rfq.title }}</h3>
+            <p class="text-sm text-slate-600 line-clamp-2">{{ rfq.description }}</p>
+          </div>
+          <app-status-badge [status]="rfq.status"></app-status-badge>
+        </div>
+        <div class="flex items-center gap-3 text-xs text-slate-500">
+          <div class="inline-flex items-center gap-1">
+            <mat-icon fontIcon="schedule" class="text-slate-400"></mat-icon>
+            Closes {{ rfq.closeDate | date:'mediumDate' }}
+          </div>
+          <div class="inline-flex items-center gap-1">
+            <mat-icon fontIcon="category" class="text-slate-400"></mat-icon>
+            {{ rfq.category }}
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

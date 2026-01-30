@@ -1,0 +1,11 @@
+:host {
+  display: block;
+}
+
+mat-card {
+  border-radius: 14px;
+}
+
+mat-card-title {
+  font-weight: 700;
+}

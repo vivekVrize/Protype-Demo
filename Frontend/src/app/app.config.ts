@@ -4,6 +4,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { routes } from './app.routes';
 import { SeedDataService } from './core/database/seed-data.service';
 import { db } from './core/database/db';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 function initializeApp(seedDataService: SeedDataService) {
   return async () => {
@@ -22,6 +23,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideAnimationsAsync(),
+    provideAnimations(),
     {
       provide: APP_INITIALIZER,
       useFactory: initializeApp,

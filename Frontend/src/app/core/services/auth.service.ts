@@ -44,6 +44,10 @@ export class AuthService {
     this.router.navigate(['/login']);
   }
 
+  switchUser(username: string): Observable<boolean> {
+    return this.login(username, 'password123');
+  }
+
   getCurrentUser(): User | null {
     return this.currentUserSubject.value;
   }
@@ -58,20 +62,6 @@ export class AuthService {
   }
 
   private redirectToDashboard(role: string): void {
-    switch (role) {
-      case 'supplier':
-        this.router.navigate(['/dashboard/supplier']);
-        break;
-      case 'admin':
-        this.router.navigate(['/dashboard/admin']);
-        break;
-      case 'procurement_officer':
-      case 'approving_authority':
-      case 'witness':
-        this.router.navigate(['/dashboard']);
-        break;
-      default:
-        this.router.navigate(['/dashboard']);
-    }
+    this.router.navigate(['/dashboard']);
   }
 }

@@ -1,0 +1,24 @@
+<div class="sidebar">
+  <div class="px-4 py-5 flex items-center gap-3">
+    <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 grid place-items-center">
+      <mat-icon class="text-white">stacked_bar_chart</mat-icon>
+    </div>
+    <div>
+      <p class="text-sm text-slate-200">Town Council</p>
+      <p class="text-base font-semibold text-white">E-Procurement</p>
+    </div>
+  </div>
+
+  <mat-nav-list>
+    
+    <a mat-list-item
+       *ngFor="let item of navItems"
+       [routerLink]="item.path"
+       routerLinkActive="active"
+       (click)="onNavigate()"
+       [style.display]="canAccess(item) ? 'flex' : 'none'">
+      <mat-icon matListIcon>{{ item.icon }}</mat-icon>
+      <span matLine>{{ item.label }}</span>
+    </a>
+  </mat-nav-list>
+</div>

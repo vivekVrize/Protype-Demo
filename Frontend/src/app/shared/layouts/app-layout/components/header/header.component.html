@@ -1,0 +1,43 @@
+<mat-toolbar class="app-toolbar" color="primary">
+  <div class="flex items-center gap-2">
+    <button mat-icon-button (click)="onToggleSidebar()" aria-label="Toggle navigation">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="brand-mark">E-Procurement</span>
+    <span class="brand-pill">Demo</span>
+  </div>
+
+  <div class="flex-1"></div>
+
+  <div class="flex items-center gap-3" *ngIf="currentUser(); else loading">
+    <button mat-icon-button [matMenuTriggerFor]="switcherMenu" aria-label="Switch account" class="relative">
+      <mat-icon class="text-amber-300">science</mat-icon>
+      <span class="sr-only">Switch demo account</span>
+    </button>
+    <mat-menu #switcherMenu="matMenu" class="min-w-[280px]">
+      <div class="px-4 py-2 text-xs uppercase tracking-[0.08em] text-slate-500">Demo Accounts</div>
+      <button mat-menu-item *ngFor="let demo of demoUsers" (click)="switchUser(demo.username)">
+        <mat-icon [fontIcon]="iconFor(demo.role)"></mat-icon>
+        <span>{{ demo.name }} • {{ demo.role.replace('_', ' ') }}</span>
+      </button>
+      <mat-divider></mat-divider>
+      <div class="px-4 py-2 text-[11px] text-slate-500">Switching is logged to audit trail.</div>
+    </mat-menu>
+
+    <div class="user-chip" *ngIf="currentUser() as user">
+      <div class="avatar-fallback">{{ user.name ? user.name[0] : 'U' }}</div>
+      <div class="text-xs leading-tight text-right">
+        <div class="font-semibold text-white">{{ user.name }}</div>
+        <div class="text-slate-200 capitalize">{{ user.role.replace('_', ' ') }}</div>
+      </div>
+    </div>
+
+    <button mat-icon-button aria-label="Logout" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+
+  <ng-template #loading>
+    <app-loading-spinner [diameter]="20" [strokeWidth]="3" color="accent"></app-loading-spinner>
+  </ng-template>
+</mat-toolbar>

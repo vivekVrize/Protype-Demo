@@ -1,0 +1,7 @@
+<div class="breadcrumbs" *ngIf="crumbs.length > 0">
+  <span class="crumb">Home</span>
+  <ng-container *ngFor="let crumb of crumbs; let last = last">
+    <span class="separator">/</span>
+    <span class="crumb" [class.active]="last">{{ crumb.label | titlecase }}</span>
+  </ng-container>
+</div>

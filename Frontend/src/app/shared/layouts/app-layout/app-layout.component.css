@@ -1,0 +1,35 @@
+.layout-container {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+}
+
+.app-sidenav {
+  width: 260px;
+  border-right: 1px solid #e2e8f0;
+  background: #0b1220;
+  color: #e2e8f0;
+}
+
+.layout-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-area {
+  padding: 20px clamp(16px, 2vw, 32px);
+  flex: 1;
+}
+
+.page-slot {
+  margin-top: 12px;
+}
+
+@media (max-width: 1024px) {
+  .app-sidenav {
+    width: 240px;
+  }
+  .content-area {
+    padding: 16px;
+  }
+}

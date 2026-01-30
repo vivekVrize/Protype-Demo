@@ -1,0 +1,31 @@
+<div class="space-y-4">
+  <div>
+    <p class="text-sm text-slate-500">Approving Authority</p>
+    <h1 class="text-2xl font-semibold text-slate-900">Pending RFQs</h1>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <mat-card *ngFor="let rfq of pending()" class="rfq-card">
+      <mat-card-content class="space-y-3">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <p class="text-xs text-slate-500">{{ rfq.rfqNumber }}</p>
+            <h3 class="text-lg font-semibold text-slate-900">{{ rfq.title }}</h3>
+            <p class="text-sm text-slate-600 line-clamp-2">{{ rfq.description }}</p>
+          </div>
+          <app-status-badge [status]="rfq.approvalStatus" [label]="rfq.approvalStatus"></app-status-badge>
+        </div>
+        <div class="flex gap-2">
+          <button mat-flat-button color="primary" (click)="approve(rfq)">
+            <mat-icon>check</mat-icon>
+            Approve
+          </button>
+          <button mat-stroked-button color="warn" (click)="reject(rfq)">
+            <mat-icon>close</mat-icon>
+            Reject
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

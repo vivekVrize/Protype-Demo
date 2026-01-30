@@ -1,0 +1,49 @@
+<div class="space-y-6">
+  <div class="flex flex-col gap-2">
+    <p class="text-sm text-slate-500">Welcome back</p>
+    <div class="flex flex-wrap items-center gap-3">
+      <h1 class="text-3xl font-semibold text-slate-900">{{ currentUser()?.name }}</h1>
+      <app-status-badge [status]="currentUser()?.role || 'user'" [label]="(currentUser()?.role || 'User').replace('_',' ')"></app-status-badge>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+    <app-stat-card label="Active RFQs" [value]="metrics().activeRfqs" icon="assignment" iconBgClass="bg-blue-600"></app-stat-card>
+    <app-stat-card label="Pending Approvals" [value]="metrics().pendingApprovals" icon="verified" iconBgClass="bg-amber-500"></app-stat-card>
+    <app-stat-card label="Open Quotations" [value]="metrics().openQuotations" icon="description" iconBgClass="bg-indigo-600"></app-stat-card>
+    <app-stat-card label="Closing Soon" [value]="metrics().closingSoon" icon="schedule" iconBgClass="bg-orange-500"></app-stat-card>
+  </div>
+
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-4">
+    <mat-card class="col-span-2">
+      <mat-card-header>
+        <mat-card-title>{{ isSupplier() ? 'Available RFQs' : 'Recent RFQs' }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="divide-y divide-slate-200">
+          <div *ngFor="let rfq of recentRfqs" class="py-3 flex items-start justify-between">
+            <div class="space-y-1">
+              <div class="text-sm font-semibold text-slate-900">{{ rfq.title }}</div>
+              <div class="text-xs text-slate-500">{{ rfq.rfqNumber }} • Closes {{ rfq.closeDate | date:'mediumDate' }}</div>
+              <p class="text-sm text-slate-600 line-clamp-2">{{ rfq.description }}</p>
+            </div>
+            <app-status-badge [status]="rfq.status"></app-status-badge>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Demo Tips</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <ul class="list-disc ml-5 space-y-2 text-sm text-slate-700">
+          <li>Use the beaker icon in the header to switch demo users — every switch is audit-logged.</li>
+          <li>Approver: approve RFQ-2026-005 to publish it.</li>
+          <li>Supplier: submit to RFQ-2026-001, then open as procurement with witness.</li>
+        </ul>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

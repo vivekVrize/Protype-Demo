@@ -1,0 +1,19 @@
+<div class="space-y-4">
+  <div>
+    <p class="text-sm text-slate-500">System Trail</p>
+    <h1 class="text-2xl font-semibold text-slate-900">Audit Logs</h1>
+  </div>
+
+  <mat-card>
+    <mat-card-content class="divide-y divide-slate-200">
+      <div *ngFor="let log of logs()" class="py-3 flex items-start gap-3">
+        <mat-icon class="text-slate-400">history</mat-icon>
+        <div class="space-y-1">
+          <div class="text-sm font-semibold text-slate-900">{{ log.action | titlecase }}</div>
+          <div class="text-xs text-slate-500">{{ log.entityType }} #{{ log.entityId }} • {{ log.timestamp | date:'short' }}</div>
+          <p class="text-sm text-slate-700">{{ log.details }}</p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
