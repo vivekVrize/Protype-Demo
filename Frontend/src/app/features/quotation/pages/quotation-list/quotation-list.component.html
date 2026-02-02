@@ -18,13 +18,7 @@
         <div class="flex items-center gap-3 text-xs text-slate-500">
           <div class="inline-flex items-center gap-1">
             <mat-icon fontIcon="payments" class="text-slate-400"></mat-icon>
-            <span
-              [class.blur-md]="shouldBlurAmount(q.rfqId)"
-              [class.select-none]="shouldBlurAmount(q.rfqId)"
-              [attr.aria-label]="shouldBlurAmount(q.rfqId) ? 'Amount hidden until RFQ closes' : (q.totalAmount | currency:'SGD')"
-            >
-              {{ q.totalAmount | currency:'SGD' }}
-            </span>
+            {{ q.totalAmount | currency:'SGD' }}
           </div>
           <div class="inline-flex items-center gap-1">
             <mat-icon fontIcon="person" class="text-slate-400"></mat-icon>
